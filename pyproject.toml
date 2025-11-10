@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "project1-kivilev-dmitryi-m25-555"
+version = "0.1.0"
+description = ""
+authors = ["dmitrikivilev <dimon_95.08@mail.ru>"]
+readme = "README.md"
+
+packages = [
+    { include = "labyrinth_game" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+
+[tool.poetry.scripts]
+project = "labyrinth_game.main:main"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+exclude = ["venv", ".venv", "dist", "__pycache__"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = []
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.14.4,<0.15.0)"
+]
