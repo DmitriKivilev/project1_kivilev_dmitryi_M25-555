@@ -1,7 +1,15 @@
-#!/usr/bin/env python3
-
-from labyrinth_game.player_actions import get_input, show_inventory
-from labyrinth_game.utils import describe_current_room
+from labyrinth_game.player_actions import (
+    get_input,
+    move_player,
+    show_inventory,
+    take_item,
+    use_item,
+)
+from labyrinth_game.utils import (
+    attempt_open_treasure,
+    describe_current_room,
+    solve_puzzle,
+)
 
 # Состояние игры
 game_state = {
@@ -10,6 +18,52 @@ game_state = {
     'game_over': False,  # Флаг окончания игры
     'steps_taken': 0  # Количество шагов
 }
+
+
+def process_command(game_state, command):
+    """Обрабатывает команды игрока"""
+    parts = command.split()
+    if not parts:
+        return
+    
+    main_command = parts[0]
+    argument = parts[1] if len(parts) > 1 else ""
+    
+    match main_command:
+        case "look":
+            describe_current_room(game_state)
+        case "inventory":
+            show_inventory(game_state)
+        case "go" if argument:
+            move_player(game_state, argument)
+            describe_current_room(game_state)
+        case "take" if argument:
+            take_item(game_state, argument)
+        case "use" if argument:
+            use_item(game_state, argument)
+        case "solve":
+            if game_state['current_room'] == 'treasure_room':
+                attempt_open_treasure(game_state)
+            else:
+                solve_puzzle(game_state)
+        case "north" | "south" | "east" | "west":
+            move_player(game_state, main_command)
+            describe_current_room(game_state)
+        case "help":
+            print("Доступные команды:")
+            print("  look - осмотреться")
+            print("  inventory - показать инвентарь")
+            print("  go <направление> - пойти в направлении")
+            print("  north/south/east/west - пойти в направлении")
+            print("  take <предмет> - взять предмет")
+            print("  use <предмет> - использовать предмет")
+            print("  solve - решить загадку")
+            print("  help - помощь")
+            print("  quit - выход")
+        case "quit" | "exit":
+            game_state['game_over'] = True
+        case _:
+            print("Неизвестная команда. Введите 'help' для списка команд.")
 
 
 def main():
@@ -22,18 +76,9 @@ def main():
     # Основной игровой цикл
     while not game_state['game_over']:
         command = get_input("\nВведите команду: ")
-        
-        if command == "quit":
-            print("Спасибо за игру!")
-            break
-        elif command == "inventory":
-            show_inventory(game_state)
-        elif command == "look":
-            describe_current_room(game_state)
-        elif command == "help":
-            print("Доступные команды: look, inventory, help, quit")
-        else:
-            print("Неизвестная команда. Введите 'help' для списка команд.")
+        process_command(game_state, command)
+    
+    print("Спасибо за игру!")
 
 
 if __name__ == "__main__":
