@@ -24,6 +24,8 @@ def show_inventory(game_state):
 
 def move_player(game_state, direction):
     """Перемещает игрока в указанном направлении"""
+    from labyrinth_game.utils import random_event
+    
     current_room = game_state['current_room']
     room_data = ROOMS[current_room]
     
@@ -32,11 +34,13 @@ def move_player(game_state, direction):
         game_state['current_room'] = new_room
         game_state['steps_taken'] += 1
         print(f"Вы пошли {direction}...")
+        
+        # Вызываем случайное событие после перемещения
+        random_event(game_state)
         return True
     else:
         print("Нельзя пойти в этом направлении.")
         return False
-
 
 def take_item(game_state, item_name):
     """Берет предмет из комнаты и добавляет в инвентарь"""
