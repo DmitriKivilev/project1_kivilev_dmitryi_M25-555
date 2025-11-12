@@ -59,7 +59,7 @@ ROOMS = {
             '10'
         )
     },
-	'exit_room': {
+    'exit_room': {
         'description': 'Комната с порталом. Похоже на выход из лабиринта!',
         'exits': {'west': 'swamp'},
         'items': ['star'],
@@ -72,4 +72,17 @@ ROOMS = {
         'items': ['mushroom'],
         'puzzle': ('В голове раздается подсказка: "прыжок"', 'прыжок')
     }
+}
+
+# Команды для справки
+COMMANDS = {
+    "look": "осмотреться",
+    "inventory": "показать инвентарь",
+    "go <direction>": "пойти в направлении (north/south/east/west)",
+    "north/south/east/west": "пойти в направлении",
+    "take <item>": "взять предмет",
+    "use <item>": "использовать предмет",
+    "solve": "решить загадку",
+    "help": "помощь",
+    "quit": "выход"
 }

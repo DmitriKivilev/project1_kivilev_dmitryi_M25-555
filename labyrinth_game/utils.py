@@ -112,18 +112,31 @@ def solve_puzzle(game_state):
     
     user_answer = get_input("Ваш ответ: ")
     
-    if user_answer == correct_answer:
+    # Проверка альтернативных вариантов ответа
+    correct_answers = [correct_answer]
+    if correct_answer == '10':
+        correct_answers.extend(['десять', '10'])
+    
+    if user_answer in correct_answers:
         print("Правильно! Загадка решена.")
         room_data['puzzle'] = None  # Убираем загадку
-        # Добавляем награду
+        
+        # Награда в зависимости от комнаты
         if current_room == 'treasure_room':
             print("Вы получаете treasure_key!")
             game_state['player_inventory'].append('treasure_key')
+        elif current_room == 'hall':
+            print("Вы получаете доступ к новым возможностям!")
+        elif current_room == 'trap_room':
+            print("Ловушка деактивирована!")
         else:
             print("Вы чувствуете, что стали ближе к разгадке тайны.")
     else:
         print("Неверно. Попробуйте снова.")
-
+        # В trap_room неверный ответ активирует ловушку
+        if current_room == 'trap_room':
+            print("Неверный ответ активировал ловушку!")
+            trigger_trap(game_state)
 
 def attempt_open_treasure(game_state):
     """Пытается открыть сундук с сокровищами"""
@@ -166,3 +179,10 @@ def attempt_open_treasure(game_state):
     else:
         print("Вы отступаете от сундука.")
         return False
+
+def show_help(commands):
+    """Показывает список доступных команд"""
+    print("Доступные команды:")
+    for command, description in commands.items():
+        # Форматирование с выравниванием
+        print(f"  {command:<16} - {description}")

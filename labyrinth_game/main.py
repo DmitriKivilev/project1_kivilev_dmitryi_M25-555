@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+from labyrinth_game.constants import COMMANDS
 from labyrinth_game.player_actions import (
     get_input,
     move_player,
@@ -8,6 +11,7 @@ from labyrinth_game.player_actions import (
 from labyrinth_game.utils import (
     attempt_open_treasure,
     describe_current_room,
+    show_help,
     solve_puzzle,
 )
 
@@ -50,16 +54,7 @@ def process_command(game_state, command):
             move_player(game_state, main_command)
             describe_current_room(game_state)
         case "help":
-            print("Доступные команды:")
-            print("  look - осмотреться")
-            print("  inventory - показать инвентарь")
-            print("  go <направление> - пойти в направлении")
-            print("  north/south/east/west - пойти в направлении")
-            print("  take <предмет> - взять предмет")
-            print("  use <предмет> - использовать предмет")
-            print("  solve - решить загадку")
-            print("  help - помощь")
-            print("  quit - выход")
+            show_help(COMMANDS)
         case "quit" | "exit":
             game_state['game_over'] = True
         case _:
