@@ -20,7 +20,8 @@ game_state = {
     'player_inventory': [],  # Инвентарь игрока
     'current_room': 'entrance',  # Текущая комната
     'game_over': False,  # Флаг окончания игры
-    'steps_taken': 0  # Количество шагов
+    'steps_taken': 0,  # Кол-во шагов
+    'traps_triggered': 0 # Кол-во ловушек
 }
 
 
@@ -46,9 +47,12 @@ def process_command(game_state, command):
         case "use" if argument:
             use_item(game_state, argument)
         case "solve":
-            if game_state['current_room'] == 'treasure_room' and 'treasure_key' in game_state['player_inventory']:
+            if (game_state['current_room'] == 'treasure_room' and 
+                'treasure_key' in game_state['player_inventory']):
+            # Если УЖЕ есть ключ
                 attempt_open_treasure(game_state)
             else:
+            # Если ключа нет - загадка
                 solve_puzzle(game_state)
         case "north" | "south" | "east" | "west":
             move_player(game_state, main_command)

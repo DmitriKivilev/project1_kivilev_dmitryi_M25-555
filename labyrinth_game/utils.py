@@ -4,7 +4,6 @@ from labyrinth_game.constants import (
     EVENT_PROBABILITY,
     EVENT_TYPES_COUNT,
     ROOMS,
-    TRAP_DAMAGE_THRESHOLD,
 )
 from labyrinth_game.player_actions import get_input
 
@@ -19,17 +18,19 @@ def trigger_trap(game_state):
     """Активирует ловушку с негативными последствиями"""
     print("Ловушка активирована! Пол стал дрожать...")
     
+    # Увеличиваем счетчик ловушек
+    game_state['traps_triggered'] += 1
+    
     inventory = game_state['player_inventory']
     
     if inventory:
-        # Случайно выбираем предмет для удаления
-        item_index = pseudo_random(game_state['steps_taken'], len(inventory))
+        item_index = pseudo_random(game_state['traps_triggered'], len(inventory))
         lost_item = inventory.pop(item_index)
         print(f"Из вашего инвентаря выпал и потерялся: {lost_item}")
     else:
-        # Игрок получает "урон"
-        damage_chance = pseudo_random(game_state['steps_taken'], EVENT_PROBABILITY)
-        if damage_chance < TRAP_DAMAGE_THRESHOLD:
+        # Используем traps_triggered для случайности
+        damage_chance = pseudo_random(game_state['traps_triggered'], 10)
+        if damage_chance < 1:  # 10% шанс
             print("Ловушка нанесла критический урон! Игра окончена.")
             game_state['game_over'] = True
         else:
@@ -62,7 +63,7 @@ def random_event(game_state):
             # Испуг
             print("Вы услышали подозрительный шорох в темноте...")
             if 'sword' in inventory:
-                print("Благодаря мечу в руках, вы отпугнули неизвестное существо!")
+                print("Благодаря мечу в руках, вы отпугнули существо!")
             else:
                 print("Шорох быстро стих, но вы почувствовали беспокойство.")
         

@@ -76,11 +76,22 @@ def take_item(game_state, item_name):
 def use_item(game_state, item_name):
     """Использует предмет из инвентаря"""
     inventory = game_state['player_inventory']
-    
+    current_room = game_state['current_room']
+
     if item_name not in inventory:
         print("У вас нет такого предмета.")
         return False
     
+    if item_name == 'treasure_key':
+        if current_room == 'treasure_room':
+            print("Вы применяете ключ, и замок щёлкает. Сундук открыт!")
+            ROOMS[current_room]['items'].remove('treasure_chest')
+            print("В сундуке сокровище! Вы победили!")
+            game_state['game_over'] = True
+            return True
+        else:
+            print("Здесь нет сундука для этого ключа.")
+            return False
     if item_name == 'torch':
         print("Вы зажгли факел. Стало светлее!")
     elif item_name == 'sword':
