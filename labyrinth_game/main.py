@@ -46,7 +46,7 @@ def process_command(game_state, command):
         case "use" if argument:
             use_item(game_state, argument)
         case "solve":
-            if game_state['current_room'] == 'treasure_room':
+            if game_state['current_room'] == 'treasure_room' and 'treasure_key' in game_state['player_inventory']:
                 attempt_open_treasure(game_state)
             else:
                 solve_puzzle(game_state)
