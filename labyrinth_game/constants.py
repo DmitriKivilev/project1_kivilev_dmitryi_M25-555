@@ -1,5 +1,10 @@
 # labyrinth_game/constants.py
 
+# Игровые константы
+EVENT_PROBABILITY = 10
+TRAP_DAMAGE_THRESHOLD = 3
+EVENT_TYPES_COUNT = 3
+
 ROOMS = {
     'entrance': {
         'description': 'Вы в темном входе лабиринта. '
@@ -11,7 +16,12 @@ ROOMS = {
     'hall': {
         'description': 'Большой зал с эхом. '
                        'По центру стоит пьедестал с запечатанным сундуком.',
-        'exits': {'south': 'entrance', 'west': 'library', 'north': 'treasure_room'},
+        'exits': {
+            'south': 'entrance',
+            'west': 'library',
+            'north': 'treasure_room',
+            'east': 'swamp'
+        },
         'items': [],
         'puzzle': (
             'На пьедестале надпись: "Назовите число, '

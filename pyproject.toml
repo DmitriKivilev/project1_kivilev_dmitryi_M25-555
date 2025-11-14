@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "project1-kivilev-dmitryi-m25-555"
-version = "0.1.0"
-description = ""
+version = "0.1.1"
+description = "Текстовая игра лабиринт сокровищ"
 authors = ["dmitrikivilev <dimon_95.08@mail.ru>"]
 readme = "README.md"
 
@@ -11,6 +11,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.13"
+asciinema = "^2.4.0"
 
 [tool.poetry.scripts]
 project = "labyrinth_game.main:main"
