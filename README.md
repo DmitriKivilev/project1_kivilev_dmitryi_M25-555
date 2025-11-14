@@ -9,3 +9,11 @@
 make install
 # или
 poetry install
+
+## Запуск игры
+
+```bash
+# Запуск 
+make project
+# или
+poetry run  project
