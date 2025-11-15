@@ -1,7 +1,7 @@
 # labyrinth_game/constants.py
 
 # Игровые константы
-EVENT_PROBABILITY = 10
+EVENT_PROBABILITY = 3
 TRAP_DAMAGE_THRESHOLD = 8
 EVENT_TYPES_COUNT = 3
 

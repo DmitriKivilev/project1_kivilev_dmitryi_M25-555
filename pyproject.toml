@@ -12,6 +12,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.13"
 asciinema = "^2.4.0"
+certifi = "^2025.11.12"
 
 [tool.poetry.scripts]
 project = "labyrinth_game.main:main"

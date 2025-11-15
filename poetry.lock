@@ -13,6 +13,18 @@ files = [
 ]
 
 [[package]]
+name = "certifi"
+version = "2025.11.12"
+description = "Python package for providing Mozilla's CA Bundle."
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "certifi-2025.11.12-py3-none-any.whl", hash = "sha256:97de8790030bbd5c2d96b7ec782fc2f7820ef8dba6db909ccf95449f2d062d4b"},
+    {file = "certifi-2025.11.12.tar.gz", hash = "sha256:d8ab5478f2ecd78af242878415affce761ca6bc54a22a27e026d7c25357c3316"},
+]
+
+[[package]]
 name = "ruff"
 version = "0.14.4"
 description = "An extremely fast Python linter and code formatter, written in Rust."
@@ -44,4 +56,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.13"
-content-hash = "4a9b03695d7577d522ac6bd59f9cd7e705b39f99a89a43a72aef68d21e333858"
+content-hash = "23970982c28e7c0d37f539bdb55ccbecea505e8e448223aa8e0fbcbd8c92c273"

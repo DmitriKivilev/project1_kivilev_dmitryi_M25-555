@@ -7,11 +7,15 @@ from labyrinth_game.constants import ROOMS
 def get_input(prompt="> "):
     """Получает ввод от пользователя с обработкой ошибок"""
     try:
-        return input(prompt).strip().lower()
+        user_input = input(prompt)
+        return user_input.strip().lower()
     except (KeyboardInterrupt, EOFError):
         print("\nВыход из игры.")
         return "quit"
-
+    except UnicodeDecodeError:
+        # При ошибке кодировки
+        print("\nОшибка кодировки. Пожалуйста, введите ответ еще раз.")
+        return ""
 
 def show_inventory(game_state):
     """Показывает инвентарь игрока"""

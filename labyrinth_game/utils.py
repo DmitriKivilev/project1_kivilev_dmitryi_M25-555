@@ -117,6 +117,8 @@ def solve_puzzle(game_state):
     print(f"Загадка: {question}")
     
     user_answer = get_input("Ваш ответ: ")
+    if user_answer == "":
+        return
     
     # Проверка альтернативных вариантов ответа
     correct_answers = [correct_answer]

@@ -17,5 +17,9 @@ poetry install
 # Запуск 
 make project
 # или
-poetry run  project
-```
+poetry run## Демонстрация игрового процесса
+
+
+## Запись игрового процесса
+
+[![asciicast](https://asciinema.org/a/G4bRh94pIJldVtlJBi17aXKZi.svg)](https://asciinema.org/a/G4bRh94pIJldVtlJBi17aXKZi)
