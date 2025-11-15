@@ -9,6 +9,7 @@
 make install
 # или
 poetry install
+```
 
 ## Запуск игры
 
@@ -17,3 +18,4 @@ poetry install
 make project
 # или
 poetry run  project
+```
